@@ -1,10 +1,10 @@
 // import * as dotenv from 'dotenv';
-import IntaSend from 'intasend-node';
+// import IntaSend from 'intasend-node';
 
 
 // dotenv.config();
 
-// const IntaSend = require('intasend-node');
+const IntaSend = require('intasend-node');
 const TOKEN = process.env.INTASEND_SECRET_TOKEN;
 const PUBLISHABLE_KEY = process.env.INTASEND_PUBLISHABLE_KEY;
 
@@ -15,10 +15,10 @@ const intasend = new IntaSend(
   );
 
 export const sendToMoMo = async (
-    phoneNumber: string | any,
-    name: string,
-    amount: number,
-    narrative: string
+    phoneNumber,
+    name,
+    amount,
+    narrative
     ) =>{
     try {
         // Step 1: Initiate M-Pesa B2C
@@ -33,14 +33,14 @@ export const sendToMoMo = async (
         });
     
         //step 2: Approve and release payment
-        return await intasend.payouts().approve(response, false).then((res: any) => {
+        return await intasend.payouts().approve(response, false).then((res) => {
           console.log(res);
           console.log("Payout approved");
 
-        }).catch((err: any) => {
+        }).catch((err) => {
           console.log(err);
         });
-      } catch (err: any) {
+      } catch (err) {
         console.error(`Error sending mobile money payout:`, err);
         console.error(err.toString('ascii'));
       }

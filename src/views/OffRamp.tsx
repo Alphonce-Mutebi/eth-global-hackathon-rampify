@@ -5,16 +5,10 @@ import { sendToMoMo } from "../utils/momo";
 
 function OffRamp () {
 
-
-
-    const offRamp =  async(event:any) =>{
-
+        const offRamp =  async(event:any) =>{
         event.preventDefault();
-
         const data = new FormData(event.currentTarget);
-
         console.log(data.get('phone')?.toString().substring(1));
-
         // TODO convert usd to kes
         // TODO check balance before withdrawal
         const offRampData = {
@@ -25,7 +19,7 @@ function OffRamp () {
 
         console.log('This is offramp data ', offRampData)
 
-        // await sendToMoMo(offRampData.phoneNumber, offRampData.name, offRampData.amount,'test')
+        await sendToMoMo(offRampData.phoneNumber, offRampData.name, offRampData.amount,'test')
 
         // sendMobileMoney('254726111690', 'test', 10, 'this is a test')
 
