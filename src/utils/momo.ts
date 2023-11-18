@@ -1,10 +1,10 @@
-import * as dotenv from 'dotenv';
-import { TxStatus } from '../enums/txStatus';
-import { TxType } from '../enums/txType';
+// import * as dotenv from 'dotenv';
+import IntaSend from 'intasend-node';
 
-dotenv.config();
 
-const IntaSend = require('intasend-node');
+// dotenv.config();
+
+// const IntaSend = require('intasend-node');
 const TOKEN = process.env.INTASEND_SECRET_TOKEN;
 const PUBLISHABLE_KEY = process.env.INTASEND_PUBLISHABLE_KEY;
 
@@ -14,7 +14,8 @@ const intasend = new IntaSend(
     false,
   );
 
-export const sendToMoMo = async (phoneNumber: string,
+export const sendToMoMo = async (
+    phoneNumber: string | any,
     name: string,
     amount: number,
     narrative: string
@@ -35,12 +36,7 @@ export const sendToMoMo = async (phoneNumber: string,
         return await intasend.payouts().approve(response, false).then((res: any) => {
           console.log(res);
           console.log("Payout approved");
-        //   Transaction.create({
-        //     status: TransactionStatus.COMPLETE,
-        //     type: TransactionTypes.SEND_MOBILE_MONEY,
-        //     requestData:response,
-        //     responseData: res,
-        //   });
+
         }).catch((err: any) => {
           console.log(err);
         });
